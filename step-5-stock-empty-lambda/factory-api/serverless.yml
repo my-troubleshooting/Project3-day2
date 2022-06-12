@@ -1,0 +1,18 @@
+service: factory-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-northeast-2
+
+functions:
+  producer:
+    handler: handler.handler
+    events:
+      - sqs: arn:aws:sqs:ap-northeast-2:060701521359:stock_queue # SQS arn
+    # environment: 
+    #   QUEUE_URL: ${construct:jobs.queueUrl} # FILL_ME_IN
+
+plugins:
+  - serverless-lift
